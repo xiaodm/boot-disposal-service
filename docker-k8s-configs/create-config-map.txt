@@ -1,0 +1,1 @@
+kubectl create configmap boot-disposal-service-config --from-file application.yml 

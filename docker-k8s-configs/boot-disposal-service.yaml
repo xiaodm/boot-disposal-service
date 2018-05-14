@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-disposal-service
+spec:
+  ports:
+  - port: 9503
+    targetPort: 9503
+    name: http
+  - port: 9504
+    targetPort: 9504
+    name: management
+  selector:
+    app: spring-boot-disposal
+  type: NodePort

@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1 # for versions 1.7 - 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: spring-boot-disposal
+spec:
+  selector:
+    matchLabels:
+      app: spring-boot-disposal
+  replicas: 3 # tells deployment to run 3 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: spring-boot-disposal
+    spec:
+      containers:
+      - name: spring-boot-disposal
+        image: xiaodm.local/disposal-service:v1.0   # your image name here
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9503
+          name: server
+        - containerPort: 9504
+          name: management
+        volumeMounts:
+          - name: boot-disposal-service-config 
+            mountPath: "/config" 
+            readOnly: true
+      volumes:
+      - name: boot-disposal-service-config
+        configMap:
+          name: boot-disposal-service-config 
+          items:
+          - key: application.yml
+            path: application.yml
+      

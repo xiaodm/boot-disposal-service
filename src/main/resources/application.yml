@@ -1,0 +1,11 @@
+server:
+  port: 9503
+
+spring:
+  application:
+    name: disposal-service
+
+RequestUrl:
+  appealService: http://localhost:9501/appeals
+Incident:
+  preName: Incident
